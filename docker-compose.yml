@@ -1,0 +1,18 @@
+version: '3'
+services:
+  node-example:
+    build: .
+    image: node-example
+    container_name: node-example
+    ports:
+      - "8080:8080"
+    links:
+      - "node-example-mongodb"
+    depends_on:
+      - "node-example-mongodb"
+
+  node-example-mongodb:
+    image: mongo:3.2.20-jessie
+    container_name: node-example-mongodb
+    ports:
+      - "8081:27017"
